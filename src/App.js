@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import BeerContainer from './components/BeerContainer';
+
+import SearchBar from './components/SearchBar';
+import SearchContext from './SearchContext';
+
+
 
 function App() {
+  const [search, setSearch] = useState("");
+  const [fetchedArr, setFetchedArr] = useState([]);
+
   return (
+    <SearchContext.Provider value={{search, setSearch,fetchedArr, setFetchedArr}}>
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SearchBar/>
+      <BeerContainer/>
     </div>
+    </SearchContext.Provider>
   );
 }
 
